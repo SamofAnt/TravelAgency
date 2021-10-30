@@ -2,6 +2,9 @@
 // Copyright (c) Самофалов А.П. All rights reserved.
 // </copyright>
 
+using Staff;
+using Staff.Extensions;
+
 namespace Domain
 {
     using System;
@@ -12,22 +15,43 @@ namespace Domain
     /// </summary>
     public class Tour
     {
-        public Tour(int id, string nameTour, ISet<Tourist> tourists = null)
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="title"></param>
+        /// <param name="tourists"></param>
+        public Tour(int id, string title, params Tourist[] tourists) : this(id, title, new HashSet<Tourist>(tourists))
+        { }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="nameTour"></param>
+        /// <param name="tourists"></param>
+        public Tour(int id, string nameTour, ISet<Tourist> tourists = null, ISet<Hotel> hotels = null)
         {
-            Id = id;
-            var trimmedNameTour = nameTour?.Trim();
+            this.Id = id;
+            this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTour));
 
-            this.NameTour = trimmedNameTour ?? throw new ArgumentOutOfRangeException(nameof(nameTour));
-
-            if(tourists != null)
+            if (tourists != null)
             {
                 foreach (var tourist in tourists)
                 {
-                    Tourists.Add(tourist);
+                    this.Tourists.Add(tourist);
                     tourist.AddTour(this);
                 }
+            }
 
-                
+            if (hotels != null)
+            {
+                foreach (var hotel in hotels)
+                {
+                    this.Hotels.Add(hotel);
+                    hotel.AddTour(this);
+                }
             }
         }
 
@@ -46,7 +70,10 @@ namespace Domain
         /// </summary>
         public ISet<Tourist> Tourists { get; protected set; } = new HashSet<Tourist>();
 
-        public override string ToString() => $"{this.NameTour} {this.NameTour}";
+        public ISet<Hotel> Hotels { get; protected set; } = new HashSet<Hotel>();
+
+        /// <inheritdoc/>
+        public override string ToString() => $"{this.NameTour} {this.Tourists.Join()} {this.Hotels.Join()}";
     }
 
 }

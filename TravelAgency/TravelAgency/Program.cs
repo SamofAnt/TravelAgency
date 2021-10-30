@@ -1,15 +1,19 @@
-﻿using System;
+﻿// <copyright file="Program.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace TravelAgency
 {
-    class Program
+    using System;
+
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var book = new Domain.Tour();
-            var tourist = new Domain.Tourist();
+            var tourist = new Domain.Tourist(1, "Самофалов", "Антон");
+            var tour = new Domain.Tour(1, "Планета Тур", tourist);
 
-
+            Console.WriteLine($"{tour} {tourist}");
         }
     }
 }

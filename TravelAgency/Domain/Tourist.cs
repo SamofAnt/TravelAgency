@@ -10,10 +10,18 @@ namespace Domain
 
     public class Tourist
     {
-        public Tourist(int id, string lastName)
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tourist"/>.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор</param>
+        /// <param name="lastName">Фамилия</param>
+        /// <param name="firstName">Имя</param>
+        public Tourist(int id, string lastName, string firstName)
         {
-            Id = id;
-            LastName = lastName;
+            this.Id = id;
+            this.LastName = lastName ?? throw new ArgumentOutOfRangeException(nameof(lastName));
+            this.FirstName = firstName ?? throw new ArgumentOutOfRangeException(nameof(firstName));
         }
 
         /// <summary>
@@ -23,12 +31,22 @@ namespace Domain
 
 
         /// <summary>
-        /// Фамилия
+        /// Фамилия.
         /// </summary>
         public string LastName { get; protected set; }
 
         /// <summary>
-        /// 
+        /// Имя
+        /// </summary>
+        public string FirstName { get; protected set; }
+
+        /// <summary>
+        /// Полное имя.
+        /// </summary>
+        public string FullName => $"{this.LastName} {this.FirstName[0]}. ".Trim();
+
+        /// <summary>
+        /// Туры.
         /// </summary>
         public ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
 
@@ -41,5 +59,7 @@ namespace Domain
         /// <see langword="true"/> если тур был добавлен.
         /// </returns>
         public bool AddTour(Tour tour) => this.Tours.TryAdd(tour) ?? throw new ArgumentNullException(nameof(tour));
+
+        public override string ToString() => this.FullName;
     }
 }
