@@ -10,6 +10,9 @@ namespace Domain
     using System.Collections.Generic;
     using Staff;
 
+    /// <summary>
+    /// Класс отель
+    /// </summary>
     public class Hotel
     {
         /// <summary>
@@ -21,7 +24,7 @@ namespace Domain
         public Hotel(int id, string nameHotel, int @class)
         {
             this.Id = id;
-            this.NameHotel = nameHotel ?? throw new ArgumentOutOfRangeException(nameof(nameHotel));
+            this.NameHotel = nameHotel.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameHotel));
             this.Class = @class;
             this.Tours = new HashSet<Tour>();
         }
@@ -67,6 +70,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => $"{this.NameHotel} {this.Class} {this.Tours.Join()}";
+        public override string ToString() => $"{this.NameHotel} {this.Class}";
     }
 }

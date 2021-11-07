@@ -2,6 +2,9 @@
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
+using System.Collections.Generic;
+using Domain;
+
 namespace TravelAgency
 {
     using System;
@@ -10,11 +13,23 @@ namespace TravelAgency
     {
         private static void Main(string[] args)
         {
-            var tourist = new Domain.Tourist(1, "Самофалов", "Антон");
             var hotel = new Domain.Hotel(1, "Radisson", 5);
-            var tour = new Domain.Tour(1, "Планета Тур", tourist);
+       
+            var tourist = new Domain.Tourist(1, "Самофалов", "Антон", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now);
+            var transport = new Transport(1, "Airplane");
+            ISet<Tourist> tourists = new HashSet<Tourist>();
+            tourists.Add(tourist);
+            ISet<Hotel> hotels = new HashSet<Hotel>();
+            hotels.Add(hotel);
+            ISet<Transport> transports = new HashSet<Transport>();
+            transports.Add(transport);
+            var emp = new Employee(1, "Samofalov", "Anton", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now, "CEO");
 
-            Console.WriteLine($"{tour} {tourist}");
+            //var tour = new Domain.Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23, tourists , hotels,emp ,transports);
+            var tour = new Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            Console.WriteLine(tour);
+
+
         }
     }
 }

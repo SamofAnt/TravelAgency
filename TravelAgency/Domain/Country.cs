@@ -8,6 +8,9 @@ namespace Domain
     using Staff;
     using Staff.Extensions;
 
+    /// <summary>
+    /// Класс страна
+    /// </summary>
     public class Country
     {
         /// <summary>
@@ -18,7 +21,7 @@ namespace Domain
         public Country(int id, string nameCountry)
         {
             this.Id = id;
-            this.NameCountry = nameCountry.TrimOrNull() ?? throw new ArgumentNullException(nameof(nameCountry));
+            this.NameCountry = nameCountry.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCountry));
             this.Cities = new HashSet<City>();
             this.Hotels = new HashSet<Hotel>();
         }
@@ -43,8 +46,27 @@ namespace Domain
         /// </summary>
         public virtual ISet<City> Cities { get; set; } = new HashSet<City>();
 
+        /// <summary>
+        /// Добавить город в страну.
+        /// </summary>
+        /// <param name="city">Добавляемый город</param>
+        /// <returns>
+        /// <see langword="true"/> если город был добавлен.
+        /// </returns>
+        public bool AddCity(City city) => this.Cities.TryAdd(city) ?? throw new ArgumentNullException(nameof(city));
+
+        /// <summary>
+        /// Добавить отель в страну.
+        /// </summary>
+        /// <param name="hotel">Добавляемый отель</param>
+        /// <returns>
+        /// <see langword="true"/> если отель был добавлен.
+        /// </returns>
+        public bool AddHotel(Hotel hotel) => this.Hotels.TryAdd(hotel) ?? throw new ArgumentNullException(nameof(hotel));
+
+
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => $"{this.NameCountry} {this.Cities.Join()} {this.Hotels.Join()}";
+        public override string ToString() => $"{this.NameCountry}";
     }
 }

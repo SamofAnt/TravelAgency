@@ -1,11 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using Staff;
-
+﻿// <copyright file="City.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 namespace Domain
 {
+    using System;
+    using System.Collections.Generic;
+    using Staff;
+
+    /// <summary>
+    /// Класс город
+    /// </summary>
     public class City
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="City"/>.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор</param>
+        /// <param name="nameCity">Название города</param>
+        public City(int id, string nameCity)
+        {
+            this.Id = id;
+            this.NameCity = nameCity.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCity));
+        }
+
         /// <summary>
         /// Получает или задает уникальный идентификатор
         /// </summary>
@@ -37,6 +54,6 @@ namespace Domain
         /// </returns>
         public bool AddAttraction(Attraction attraction) => this.Attractions.TryAdd(attraction) ?? throw new ArgumentNullException(nameof(attraction));
 
-        public override string ToString() => $"{this.NameCity} {this.Country.NameCountry} {this.Attractions}";
+        public override string ToString() => this.NameCity;
     }
 }

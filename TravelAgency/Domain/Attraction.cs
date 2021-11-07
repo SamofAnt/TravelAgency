@@ -6,6 +6,9 @@ namespace Domain
     using System;
     using Staff;
 
+    /// <summary>
+    /// Класс достопримечательность
+    /// </summary>
     public class Attraction
     {
         /// <summary>
@@ -17,7 +20,7 @@ namespace Domain
         {
             this.Id = id;
             this.NameAttraction =
-                nameAttraction.TrimOrNull() ?? throw new ArgumentNullException(nameof(nameAttraction));
+                nameAttraction.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameAttraction));
         }
 
         /// <summary>
@@ -42,6 +45,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => $"{this.NameAttraction} {this.City.NameCity}";
+        public override string ToString() => this.NameAttraction;
     }
 }

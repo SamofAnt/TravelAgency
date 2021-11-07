@@ -11,7 +11,7 @@ namespace Domain
     using System.Collections.Generic;
 
     /// <summary>
-    /// Тур.
+    /// Класс тур
     /// </summary>
     public class Tour
     {
@@ -51,7 +51,7 @@ namespace Domain
             this.Price = price;
             this.DateEnd = dateEnd;
             this.MaxTourists = maxTourists;
-            this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentNullException(nameof(nameTour));
+            this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTour));
 
             if (tourists != null)
             {
@@ -102,7 +102,7 @@ namespace Domain
             this.Price = price;
             this.DateEnd = dateEnd;
             this.MaxTourists = maxTourists;
-            this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentNullException(nameof(nameTour));
+            this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTour));
         }
 
         /// <summary>
@@ -155,6 +155,7 @@ namespace Domain
         public virtual ISet<Transport> Transports { get; set; } = new HashSet<Transport>();
 
         /// <inheritdoc/>
-        public override string ToString() => $"{this.NameTour} {this.DateStart}{this.DateEnd} {this.Price} {this.MaxTourists} {this.Tourists.Join()} {this.Hotels.Join()} {this.Employee}";
+        public override string ToString() => $"Tour: {this.NameTour}\nДата начала: {this.DateStart}\nДата окончания: {this.DateEnd}\n" +
+                                             $"Цена: {this.Price}\nМаксимальное кол-во туристов: {this.MaxTourists}";
     }
 }

@@ -2,12 +2,17 @@
 // Copyright (c) Самофалов А.П. All rights reserved.
 // </copyright>
 
+using Staff.Extensions;
+
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     using Staff;
 
+    /// <summary>
+    /// Класс турист
+    /// </summary>
     public class Tourist
     {
         /// <summary>
@@ -67,7 +72,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает туры.
         /// </summary>
-        public ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
+        public virtual ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
 
         /// <summary>
         /// Добавить тур туристу.
@@ -80,6 +85,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => this.FullName;
+        public override string ToString() => $"Полное имя: {this.FullName}\nEmail: {this.Email}\nДата рождения: {this.Birthday}\nНомер телефона: {this.Phone}";
     }
 }

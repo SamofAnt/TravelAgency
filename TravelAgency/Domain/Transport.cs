@@ -10,6 +10,9 @@ namespace Domain
     using Staff;
     using Staff.Extensions;
 
+    /// <summary>
+    /// Класс транспорт
+    /// </summary>
     public class Transport
     {
 
@@ -20,7 +23,7 @@ namespace Domain
         /// <param name="nameTransport">Название транспорта</param>
         public Transport(int id, string nameTransport)
         {
-            this.NameTransport = nameTransport.TrimOrNull() ?? throw new ArgumentNullException(nameof(nameTransport));
+            this.NameTransport = nameTransport.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTransport));
             this.Id = id;
         }
 
@@ -50,6 +53,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => $"{this.NameTransport} {this.Tours.Join()}";
+        public override string ToString() => this.NameTransport;
     }
 }

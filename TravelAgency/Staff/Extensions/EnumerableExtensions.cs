@@ -8,7 +8,7 @@ namespace Staff.Extensions
 {
     public static class EnumerableExtensions
     {
-        public static string Join<T>(this IEnumerable<T> collection, string separator = ", ") =>
+        public static string Join<T>(this IEnumerable<T> collection, string separator = "\n") =>
             string.Join(separator, collection);
     }
 }
