@@ -1,33 +1,28 @@
-﻿// <copyright file="Tourist.cs" company="Самофалов А.П.">
-// Copyright (c) Самофалов А.П. All rights reserved.
+﻿// <copyright file="Employee.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
+
 
 namespace Domain
 {
     using System;
     using System.Collections.Generic;
     using Staff;
+    using Staff.Extensions;
 
-    public class Tourist
+    public class Employee
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Tourist"/>.
+        /// Инициализирует новый экземпляр класса <see cref="Employee"/>.
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
         /// <param name="lastName">Фамилия</param>
         /// <param name="firstName">Имя</param>
-        /// <param name="phone">Номер телефона</param>
-        /// <param name="email">Почта</param>
-        /// <param name="birthday">Дата рождения</param>
-        public Tourist(int id, string lastName, string firstName, string phone, string email, DateTime birthday)
+        public Employee(int id, string lastName, string firstName)
         {
             this.Id = id;
-            this.Phone = phone;
-            this.Email = email;
-            this.Birthday = birthday;
-            this.LastName = lastName.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(lastName));
-            this.FirstName = firstName.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(firstName));
-            this.Tours = new HashSet<Tour>();
+            this.FirstName = firstName.TrimOrNull() ?? throw new ArgumentNullException(nameof(firstName));
+            this.LastName = lastName.TrimOrNull() ?? throw new ArgumentNullException(nameof(lastName));
         }
 
         /// <summary>
@@ -64,10 +59,16 @@ namespace Domain
         /// Получает или задает дату рождения
         /// </summary>
         public DateTime Birthday { get; set; }
+
+        /// <summary>
+        /// Получает или задает позицию сотрудника
+        /// </summary>
+        public string Position { get; set; }
+
         /// <summary>
         /// Получает или задает туры.
         /// </summary>
-        public ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
+        public virtual ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
 
         /// <summary>
         /// Добавить тур туристу.
@@ -80,6 +81,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => this.FullName;
+        public override string ToString() => $"{this.FullName} {this.Tours.Join()}";
     }
 }

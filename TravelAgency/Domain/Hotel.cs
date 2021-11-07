@@ -1,6 +1,8 @@
 ﻿// <copyright file="Hotel.cs" company="Самофалов А.П.">
-// Copyright (c) Самофалов А.П.. All rights reserved.
+// Copyright (c) Самофалов А.П. All rights reserved.
 // </copyright>
+
+using Staff.Extensions;
 
 namespace Domain
 {
@@ -21,6 +23,7 @@ namespace Domain
             this.Id = id;
             this.NameHotel = nameHotel ?? throw new ArgumentOutOfRangeException(nameof(nameHotel));
             this.Class = @class;
+            this.Tours = new HashSet<Tour>();
         }
 
         /// <summary>
@@ -29,19 +32,29 @@ namespace Domain
         public int Id { get; protected set; }
 
         /// <summary>
-        /// Названия отеля
+        /// Получает или задает названия отеля
         /// </summary>
         public string NameHotel { get; protected set; }
 
         /// <summary>
-        /// Класс отеля
+        /// Получает или задает класс отеля
         /// </summary>
         public int Class { get; protected set; }
 
         /// <summary>
-        /// Коллекция туров
+        /// Получает или задает идентификатор страны
         /// </summary>
-        public ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
+        public int CountryId { get; set; }
+
+        /// <summary>
+        /// Получает или задает объект страны
+        /// </summary>
+        public virtual Country Country { get; set; }
+
+        /// <summary>
+        /// Получает или задает коллекцию туров
+        /// </summary>
+        public virtual ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
 
         /// <summary>
         /// Добавить тур отелю.
@@ -52,5 +65,8 @@ namespace Domain
         /// </returns>
         public bool AddTour(Tour tour) => this.Tours.TryAdd(tour) ?? throw new ArgumentNullException(nameof(tour));
 
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString() => $"{this.NameHotel} {this.Class} {this.Tours.Join()}";
     }
 }

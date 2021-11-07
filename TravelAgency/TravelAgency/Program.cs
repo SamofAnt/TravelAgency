@@ -11,6 +11,7 @@ namespace TravelAgency
         private static void Main(string[] args)
         {
             var tourist = new Domain.Tourist(1, "Самофалов", "Антон");
+            var hotel = new Domain.Hotel(1, "Radisson", 5);
             var tour = new Domain.Tour(1, "Планета Тур", tourist);
 
             Console.WriteLine($"{tour} {tourist}");
