@@ -24,10 +24,10 @@ namespace Domain
         public Employee(int id, string lastName, string firstName, string phone, string email, DateTime birthday, string position)
         {
             this.Id = id;
-            Phone = phone;
-            Email = email;
-            Birthday = birthday;
-            Position = position;
+            this.Phone = phone;
+            this.Email = email;
+            this.Birthday = birthday;
+            this.Position = position;
             this.FirstName = firstName.TrimOrNull() ?? throw new ArgumentNullException(nameof(firstName));
             this.LastName = lastName.TrimOrNull() ?? throw new ArgumentNullException(nameof(lastName));
         }
