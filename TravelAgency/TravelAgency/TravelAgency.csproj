@@ -21,5 +21,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\ORM\ORM.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace Domain.Tests
 {
     using NUnit.Framework;

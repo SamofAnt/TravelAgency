@@ -20,24 +20,6 @@ namespace Domain
         /// </summary>
         /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameTour">Название тура</param>
-        /// <param name="maxTourists">Максимальное количество туристов</param>
-        /// <param name="tourists">Список туристов</param>
-        /// <param name="dateStart">Дата начала тура</param>
-        /// <param name="price">Цена</param>
-        /// <param name="dateEnd">Дата окончания тура</param>
-        public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists,
-            params Tourist[] tourists)
-            : this(id, nameTour, dateStart, price, dateEnd, maxTourists,
-#pragma warning disable SA1117 // Parameters should be on same line or separate lines
-            new HashSet<Tourist>(tourists))
-#pragma warning restore SA1117 // Parameters should be on same line or separate lines
-        { }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
-        /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
-        /// <param name="nameTour">Название тура</param>
         /// <param name="dateStart">Дата начала</param>
         /// <param name="price">Цена</param>
         /// <param name="dateEnd">Дата окончания</param>
@@ -134,6 +116,11 @@ namespace Domain
         /// Получает или задает максимальное количество туристов.
         /// </summary>
         public int MaxTourists { get; set; }
+
+        /// <summary>
+        /// Получает или задает идентфикатор сотрудника
+        /// </summary>
+        public int EmployeeId { get; set; }
 
         /// <summary>
         /// Получает или задает сотрудника тура
