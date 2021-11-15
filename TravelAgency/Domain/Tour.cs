@@ -8,7 +8,6 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     using Staff;
-    using Staff.Extensions;
 
     /// <summary>
     /// Класс тур
@@ -71,12 +70,12 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nameTour"></param>
-        /// <param name="dateStart"></param>
-        /// <param name="price"></param>
-        /// <param name="dateEnd"></param>
-        /// <param name="maxTourists"></param>
+        /// <param name="id">Уникальный идентификатор</param>
+        /// <param name="nameTour">Название тура</param>
+        /// <param name="dateStart">Дата начала</param>
+        /// <param name="price">Цена</param>
+        /// <param name="dateEnd">Дата окончания</param>
+        /// <param name="maxTourists">Максимальное количество туристов</param>
         public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists)
         {
             this.Id = id;
