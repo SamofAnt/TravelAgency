@@ -9,8 +9,6 @@ namespace ORM.Configuration
         public void Configure(EntityTypeBuilder<Tourist> builder)
         {
             builder.HasKey(t => t.Id);
-            builder.Property(t => t.Id)
-                .HasColumnName("ID_TOURIST");
             builder.Property(t => t.FirstName)
                 .IsRequired();
             builder.Property(t => t.LastName)

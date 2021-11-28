@@ -10,7 +10,7 @@ namespace Domain
     using Staff;
 
     /// <summary>
-    /// Класс тур
+    /// Класс тур.
     /// </summary>
     public class Tour
     {
