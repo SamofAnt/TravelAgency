@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ORM.Repositories.Interfaces
+﻿namespace ORM.Repositories.Interfaces
 {
-    interface ITourRepostirory
+    using Domain;
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+    public interface ITourRepostirory
     {
+        IQueryable<Tour> Filter(Expression<Func<Tour, bool>> filter);
+        Tour GetById(int id);
+        IQueryable<Tour> GetAll();
+        bool TryGet(int id, out Tour tour);
     }
 }

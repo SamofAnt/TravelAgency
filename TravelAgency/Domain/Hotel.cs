@@ -18,12 +18,10 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Hotel"/>.
         /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameHotel">Названия отеля</param>
         /// <param name="class">Класс отеля</param>
-        public Hotel(int id, string nameHotel, int @class)
+        public Hotel(string nameHotel, int @class)
         {
-            this.Id = id;
             this.NameHotel = nameHotel.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameHotel));
             this.Class = @class;
             this.Tours = new HashSet<Tour>();
