@@ -11,8 +11,8 @@
         [SetUp]
         public void Setup()
         {
-            this.hotel = new Hotel(1, "Radisson", 5);
-            this.tour = new Domain.Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            this.hotel = new Hotel( "Radisson", 5);
+            this.tour = new Domain.Tour( "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
         }
 
         [Test]
@@ -27,7 +27,7 @@
 
         [Test]
         public void Ctor_WrongData_EmptyNameHotel_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Hotel(1, "", 5));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Hotel( "", 5));
 
         [Test]
         public void AddTourToHotel_ValidData_Success()

@@ -9,8 +9,6 @@ namespace ORM.Configuration
         public void Configure(EntityTypeBuilder<Country> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id)
-                .HasColumnName("ID_COUNTRY");
             builder.Property(c => c.NameCountry)
                 .IsRequired();
         }

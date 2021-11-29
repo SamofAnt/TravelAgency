@@ -13,8 +13,8 @@ namespace Domain.Tests
         [SetUp]
         public void Setup()
         {
-            this.tourist = new Tourist(1, "Самофалов", "Антон", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now);
-            this.tour = new Domain.Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            this.tourist = new Tourist("Самофалов", "Антон", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now);
+            this.tour = new Domain.Tour("Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
 
         }
         [Test]
@@ -30,7 +30,7 @@ namespace Domain.Tests
 
 
         [Test]
-        public void Ctor_WrongData_EmptyFirstName_Fail() => Assert.Throws<ArgumentOutOfRangeException>(() => _= new Tourist(1, "Самофалов", "", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now));
+        public void Ctor_WrongData_EmptyFirstName_Fail() => Assert.Throws<ArgumentOutOfRangeException>(() => _= new Tourist( "Самофалов", "", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now));
 
         [Test]
 

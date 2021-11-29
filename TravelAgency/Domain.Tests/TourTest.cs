@@ -34,7 +34,7 @@ namespace Domain.Tests
         public void ToString_ValidData_Success()
         {
             //arrange
-            var tour = new Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            var tour = new Tour("Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
             //act
             var result = tour.ToString();
             //assert
@@ -43,7 +43,7 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameTour_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Tour(1, "",DateTime.Now, 500, DateTime.Now, 23));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Tour( "",DateTime.Now, 500, DateTime.Now, 23));
 
     }
 }

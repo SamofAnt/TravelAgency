@@ -15,11 +15,9 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="City"/>.
         /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameCity">Название города</param>
-        public City(int id, string nameCity)
+        public City (string nameCity)
         {
-            this.Id = id;
             this.NameCity = nameCity.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCity));
         }
 
