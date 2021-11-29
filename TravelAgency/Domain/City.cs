@@ -16,7 +16,7 @@ namespace Domain
         /// Инициализирует новый экземпляр класса <see cref="City"/>.
         /// </summary>
         /// <param name="nameCity">Название города</param>
-        public City( string nameCity)
+        public City (string nameCity)
         {
             this.NameCity = nameCity.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCity));
         }

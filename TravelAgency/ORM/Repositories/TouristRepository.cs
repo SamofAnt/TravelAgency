@@ -1,17 +1,17 @@
 ﻿
-
 namespace ORM.Repositories
 {
     using Domain;
+    using ORM.Repositories.Interfaces;
     using System;
     using System.Linq;
     using System.Linq.Expressions;
-    class TouristRepository : ITouristRepository
+    class TouristRepository : IRepository<Tourist>
     {
         private readonly TourContext _context;
         public TouristRepository(TourContext context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
         public Tourist Create(Tourist tourist)
         {

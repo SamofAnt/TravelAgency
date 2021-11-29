@@ -1,14 +1,12 @@
-﻿using Domain;
-using ORM.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ORM.Repositories
 {
+    using Domain;
+    using ORM.Repositories.Interfaces;
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+
     class CityRepository:IRepository<City>
     {
         private TourContext _context;

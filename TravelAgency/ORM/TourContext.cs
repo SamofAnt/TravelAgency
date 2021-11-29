@@ -1,4 +1,4 @@
-﻿// <copyright file="TourEntities.cs" company="Самофалов А.П.">
+﻿// <copyright file="TourContext.cs" company="Самофалов А.П.">
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
@@ -44,5 +44,6 @@ namespace ORM
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Tourist> Tourist { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
+        public virtual DbSet<Transport> Transport { get; set; }
     }
 }

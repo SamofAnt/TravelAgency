@@ -1,13 +1,12 @@
-﻿using Domain;
-using ORM.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace ORM.Repositories
 {
+    using Domain;
+    using ORM.Repositories.Interfaces;
+    using System;
+    using System.Linq;
+    using System.Linq.Expressions;
+
     class AttractionRepository:IRepository<Attraction>
     {
         private TourContext _context;
@@ -15,39 +14,39 @@ namespace ORM.Repositories
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public City Create(City city)
+        public Attraction Create(Attraction attraction)
         {
-            this._context.City.Add(city);
+            this._context.Attraction.Add(attraction);
             this._context.SaveChanges();
-            return city;
+            return attraction;
         }
 
         public void Delete(int id)
         {
-            if (!this.TryGet(id, out var city))
+            if (!this.TryGet(id, out var attraction))
             {
                 return;
             }
-            this._context.City.Remove(city);
+            this._context.Attraction.Remove(attraction);
             this._context.SaveChanges();
         }
 
-        public IQueryable<City> Filter(Expression<Func<City, bool>> filter)
+        public IQueryable<Attraction> Filter(Expression<Func<Attraction, bool>> filter)
         {
             return this.GetAll().Where(filter);
         }
 
-        public IQueryable<City> GetAll() => _context.City;
+        public IQueryable<Attraction> GetAll() => _context.Attraction;
 
-        public City GetById(int id)
+        public Attraction GetById(int id)
         {
             return this.GetAll().SingleOrDefault(t => t.Id == id);
         }
 
-        public bool TryGet(int id, out City city)
+        public bool TryGet(int id, out Attraction attraction)
         {
-            city = this.GetAll().SingleOrDefault(t => t.Id == id);
-            return city != null;
+            attraction = this.GetAll().SingleOrDefault(t => t.Id == id);
+            return attraction != null;
         }
     }
 }
