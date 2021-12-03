@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ORM.Repositories.Interfaces
 {
-    internal interface IRepository<TEntity>
+    public interface IRepository<TEntity>
         where TEntity: class 
     {
         IQueryable<TEntity> Filter(Expression<Func<TEntity, bool>> filter);
@@ -15,6 +15,7 @@ namespace ORM.Repositories.Interfaces
         IQueryable<TEntity> GetAll();
         bool TryGet(int id, out TEntity entity);
         TEntity Create(TEntity entity);
+        void Update(TEntity entity);
         void Delete(int id);
     }
 }

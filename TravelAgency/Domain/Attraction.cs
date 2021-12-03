@@ -14,9 +14,18 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Attraction"/>.
         /// </summary>
-        /// <param name="nameAttraction">Название достопримечательности</param>
-        public Attraction( string nameAttraction)
+        public Attraction()
         {
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Attraction"/>.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="nameAttraction">Название достопримечательности.</param>
+        public Attraction(int id, string nameAttraction)
+        {
+            this.Id = id;
             this.NameAttraction =
                 nameAttraction.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameAttraction));
         }

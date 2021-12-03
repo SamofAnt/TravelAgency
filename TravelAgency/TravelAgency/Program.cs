@@ -31,7 +31,7 @@ namespace TravelAgency
 
             using (var db = new TourContext())
             {
-                
+
             }
         }
     }

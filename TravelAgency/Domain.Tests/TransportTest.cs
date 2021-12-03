@@ -16,8 +16,8 @@ namespace Domain.Tests
         [SetUp]
         public void Setup()
         {
-            this.transport = new Transport( "Airplane");
-            this.tour = new Domain.Tour( "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            this.transport = new Transport(1, "Airplane");
+            this.tour = new Domain.Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
         }
         [Test]
         public void ToString_ValidData_Success()
@@ -31,7 +31,7 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameTransport_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Transport( ""));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Transport(1, ""));
 
         [Test]
         public void AddTourToTransport_ValidData_Success()

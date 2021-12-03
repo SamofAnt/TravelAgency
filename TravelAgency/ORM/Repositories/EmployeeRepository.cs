@@ -48,5 +48,15 @@ namespace ORM.Repositories
             employee = this.GetAll().SingleOrDefault(t => t.Id == id);
             return employee != null;
         }
+
+        public Employee Update(Employee entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<Employee>.Update(Employee entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

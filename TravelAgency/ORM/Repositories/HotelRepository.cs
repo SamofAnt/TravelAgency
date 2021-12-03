@@ -5,7 +5,7 @@
     using System;
     using System.Linq;
     using System.Linq.Expressions;
-    class HotelRepository:IRepository<Hotel>
+    public class HotelRepository : IRepository<Hotel>
     {
         private TourContext _context;
         public HotelRepository(TourContext context)
@@ -45,6 +45,13 @@
         {
             hotel = this.GetAll().SingleOrDefault(t => t.Id == id);
             return hotel != null;
+        }
+
+
+       public void Update(Hotel hotel)
+        {
+            _context.Set<Hotel>().Update(hotel);
+            _context.SaveChanges();
         }
     }
 }

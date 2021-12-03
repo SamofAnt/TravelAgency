@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class TransportRepository :IRepository<Transport>
+    class TransportRepository : IRepository<Transport>
     {
         private TourContext _context;
         public TransportRepository(TourContext context)
@@ -47,6 +47,16 @@ namespace ORM.Repositories
         {
             transport = this.GetAll().SingleOrDefault(t => t.Id == id);
             return transport != null;
+        }
+
+        public Transport Update(Transport entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<Transport>.Update(Transport entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
