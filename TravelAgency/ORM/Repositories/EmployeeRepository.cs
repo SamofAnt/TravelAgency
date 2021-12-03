@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IRepository<Employee>
     {
         private TourContext _context;
         public EmployeeRepository(TourContext context)
@@ -49,14 +49,10 @@ namespace ORM.Repositories
             return employee != null;
         }
 
-        public Employee Update(Employee entity)
+        void Update(Employee employee)
         {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<Employee>.Update(Employee entity)
-        {
-            throw new NotImplementedException();
+            _context.Set<Employee>().Update(employee);
+            _context.SaveChanges();
         }
     }
 }
