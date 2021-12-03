@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class CountryRepository:IRepository<Country>
+    public class CountryRepository:IRepository<Country>
     {
         private TourContext _context;
         public CountryRepository(TourContext context)
@@ -20,7 +20,11 @@ namespace ORM.Repositories
             this._context.SaveChanges();
             return country;
         }
-
+        public void Update(Country country)
+        {
+            _context.Set<Country>().Update(country);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var country))

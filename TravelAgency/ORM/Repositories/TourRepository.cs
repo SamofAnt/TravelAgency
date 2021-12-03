@@ -51,5 +51,14 @@ namespace ORM.Repositories
             return (tour = this.GetById(id)) != null;
         }
 
+        public Tour Update(Tour entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<Tour>.Update(Tour entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

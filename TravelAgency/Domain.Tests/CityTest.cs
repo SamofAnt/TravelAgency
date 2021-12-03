@@ -12,7 +12,7 @@ namespace Domain.Tests
         public void ToString_ValidData_Success()
         {
             //arrange
-            var city = new City( "Paris");
+            var city = new City(1, "Paris");
             //act
             var result = city.ToString();
             //assert
@@ -21,7 +21,7 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameCity_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new City( ""));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new City(1, ""));
 
     }
 }

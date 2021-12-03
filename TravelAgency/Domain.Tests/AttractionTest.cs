@@ -12,7 +12,7 @@ namespace Domain.Tests
         public void ToString_ValidData_Success()
         {
             //arrange
-            var attraction = new Attraction( "The Eiffel Tower");
+            var attraction = new Attraction(1, "The Eiffel Tower");
             //act
             var result = attraction.ToString();
             //assert
@@ -21,6 +21,6 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameAttraction_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Attraction( ""));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Attraction(1, ""));
     }
 }

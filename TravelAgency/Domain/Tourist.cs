@@ -18,13 +18,15 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tourist"/>.
         /// </summary>
+        /// /// <param name="id">Уникальный идентификатор.</param>
         /// <param name="lastName">Фамилия</param>
         /// <param name="firstName">Имя</param>
         /// <param name="phone">Номер телефона</param>
         /// <param name="email">Почта</param>
         /// <param name="birthday">Дата рождения</param>
-        public Tourist( string lastName, string firstName, string phone, string email, DateTime birthday)
+        public Tourist(int id, string lastName, string firstName, string phone, string email, DateTime birthday)
         {
+            this.Id = id;
             this.Phone = phone;
             this.Email = email;
             this.Birthday = birthday;

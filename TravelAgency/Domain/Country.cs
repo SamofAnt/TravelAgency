@@ -16,9 +16,18 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Country"/>.
         /// </summary>
-        /// <param name="nameCountry">Название страны</param>
-        public Country(string nameCountry)
+        public Country()
         {
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Country"/>.
+        /// </summary>
+        /// /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="nameCountry">Название страны</param>
+        public Country(int id, string nameCountry)
+        {
+            this.Id = id;
             this.NameCountry = nameCountry.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCountry));
             this.Cities = new HashSet<City>();
             this.Hotels = new HashSet<Hotel>();
@@ -37,12 +46,12 @@ namespace Domain
         /// <summary>
         /// Получает или задает список отелей в стране.
         /// </summary>
-        public virtual ISet<Hotel> Hotels { get; set; } = new HashSet<Hotel>();
+        public virtual ISet<Hotel> Hotels { get; set; }
 
         /// <summary>
         /// Получает или задает список городов в стране.
         /// </summary>
-        public virtual ISet<City> Cities { get; set; } = new HashSet<City>();
+        public virtual ISet<City> Cities { get; set; }
 
         /// <summary>
         /// Добавить город в страну.

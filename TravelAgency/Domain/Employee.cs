@@ -18,14 +18,16 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Employee"/>.
         /// </summary>
+        /// /// <param name="id">Уникальный идентификатор.</param>
         /// <param name="lastName">Фамилия.</param>
         /// <param name="firstName">Имя.</param>
         /// <param name="phone">Телефон.</param>
         /// <param name="email">Почта.</param>
         /// <param name="birthday">Дата рождения.</param>
         /// <param name="position"> Позиция.</param>
-        public Employee(string lastName, string firstName, string phone, string email, DateTime birthday, string position)
+        public Employee(int id, string lastName, string firstName, string phone, string email, DateTime birthday, string position)
         {
+            this.Id = id;
             this.Phone = phone;
             this.Email = email;
             this.Birthday = birthday;

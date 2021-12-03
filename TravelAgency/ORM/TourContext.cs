@@ -25,15 +25,29 @@ namespace ORM
         {
             Database.EnsureCreated();
         }
+
+        public TourContext(DbContextOptions<TourContext> options) : base(options) { }
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
                 "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
         }
-
+        */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            var countries = new Country[]
+            {
+                new Country(1,"Russia"),
+                new Country(2, "USA"),
+                new Country(3, "Italy")
+            };
+            modelBuilder.Entity<Country>().HasData(countries);
+            modelBuilder.Entity<City>().HasData(new City() { Id= 1, NameCity = "Moscow", CountryId = 1});
+            modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel", CountryId = 1 });
+            modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", CityId = 1});
+
 
         }
 

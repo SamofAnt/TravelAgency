@@ -11,7 +11,7 @@ namespace ORM.Configuration
             builder.HasKey(h => h.Id);
             builder.Property(h => h.NameHotel)
                 .IsRequired();
-            builder.Property(h => h.Class)
+            builder.Property(h => h.ClassHotel)
                 .IsRequired();
 
             builder

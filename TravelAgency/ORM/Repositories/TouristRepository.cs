@@ -47,5 +47,15 @@ namespace ORM.Repositories
             tourist = this.GetAll().SingleOrDefault(t => t.Id == id);
             return tourist != null;
         }
+
+        public Tourist Update(Tourist entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IRepository<Tourist>.Update(Tourist entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

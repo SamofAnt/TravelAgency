@@ -9,7 +9,7 @@ namespace Domain.Tests
         private Country country;
 
         [SetUp]
-        public void Setup() => this.country = new Country( "France");
+        public void Setup() => this.country = new Country(1, "France");
 
         [Test]
         public void ToString_ValidData_Success()
@@ -23,14 +23,14 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameCountry_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Country(""));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new Country(1, ""));
 
         [Test]
         public void AddHotelToCountry_ValidData_Success()
         {
 
             //arrange
-            var hotel = new Hotel("Novotel", 5);
+            var hotel = new Hotel(1, "Novotel", 5);
             //act
             var result = this.country.AddHotel(hotel);
 
@@ -42,7 +42,7 @@ namespace Domain.Tests
         public void AddCityToCountry_ValidData_Success()
         {
             //arrange
-            var city = new City("Paris");
+            var city = new City(1, "Paris");
             //act
             var result = this.country.AddCity(city);
 

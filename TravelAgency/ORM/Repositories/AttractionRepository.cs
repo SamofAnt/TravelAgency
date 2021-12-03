@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class AttractionRepository:IRepository<Attraction>
+    public class AttractionRepository:IRepository<Attraction>
     {
         private TourContext _context;
         public AttractionRepository(TourContext context)
@@ -47,6 +47,11 @@ namespace ORM.Repositories
         {
             attraction = this.GetAll().SingleOrDefault(t => t.Id == id);
             return attraction != null;
+        }
+        public void Update(Attraction entity)
+        {
+            _context.Set<Attraction>().Update(entity);
+            _context.SaveChanges();
         }
     }
 }

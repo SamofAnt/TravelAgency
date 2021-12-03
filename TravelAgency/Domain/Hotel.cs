@@ -18,29 +18,38 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Hotel"/>.
         /// </summary>
-        /// <param name="nameHotel">Названия отеля</param>
-        /// <param name="class">Класс отеля</param>
-        public Hotel(string nameHotel, int @class)
+        public Hotel()
         {
+        }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Hotel"/>.
+        /// </summary>
+        /// /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="nameHotel">Названия отеля</param>
+        /// <param name="classHotel">Класс отеля</param>
+        public Hotel(int id, string nameHotel, int classHotel)
+        {
+            this.Id = id;
             this.NameHotel = nameHotel.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameHotel));
-            this.Class = @class;
+            this.ClassHotel = classHotel;
             this.Tours = new HashSet<Tour>();
         }
 
         /// <summary>
         /// Уникальный идентификатор
         /// </summary>
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
 
         /// <summary>
         /// Получает или задает названия отеля
         /// </summary>
-        public string NameHotel { get; protected set; }
+        public string NameHotel { get;  set; }
 
         /// <summary>
         /// Получает или задает класс отеля
         /// </summary>
-        public int Class { get; protected set; }
+        public int ClassHotel { get;  set; }
 
         /// <summary>
         /// Получает или задает идентификатор страны
@@ -55,7 +64,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает коллекцию туров
         /// </summary>
-        public virtual ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
+        public virtual ISet<Tour> Tours { get;  set; } = new HashSet<Tour>();
 
         /// <summary>
         /// Добавить тур отелю.
@@ -68,6 +77,6 @@ namespace Domain
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString() => $"{this.NameHotel} {this.Class}";
+        public override string ToString() => $"{this.NameHotel} {this.ClassHotel}";
     }
 }
