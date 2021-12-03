@@ -14,7 +14,7 @@ namespace ORM.Configuration
     {
         public void Configure(EntityTypeBuilder<Tour> builder)
         {
-            builder.HasKey(t => t.Id);  
+            builder.HasKey(t => t.Id);
             builder.Property(t => t.NameTour)
                 .IsRequired().HasMaxLength(64);
             builder.Property(t => t.DateStart)
@@ -27,7 +27,7 @@ namespace ORM.Configuration
             builder
                 .HasOne(t => t.Employee)
                 .WithMany(e => e.Tours)
-                .HasForeignKey(t => t.EmployeeId)
+                .HasForeignKey("EmployeeId")
                 .OnDelete(DeleteBehavior.Cascade);
 
         }

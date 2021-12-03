@@ -12,7 +12,7 @@ namespace Domain.Tests
         [SetUp]
         public void Setup()
         {
-            this.emp = new Employee(1, "Samofalov", "Anton", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now, "CEO");
+            this.emp = new Employee( "Samofalov", "Anton", "+7(915)-356-08-98", "samofalov@gmail.com", DateTime.Now, "CEO");
             
         }
 
@@ -20,7 +20,7 @@ namespace Domain.Tests
         public void ToString_ValidData_Success()
         {
             //arrange
-            var emp = new Employee(1, "Samofalov", "Anton", "+7(915)-356-08-98", "samofalov@gmail.com",DateTime.Now, "CEO");
+            var emp = new Employee( "Samofalov", "Anton", "+7(915)-356-08-98", "samofalov@gmail.com",DateTime.Now, "CEO");
             //act
             var result = emp.ToString();
             //assert
@@ -29,13 +29,13 @@ namespace Domain.Tests
 
         [Test]
         public void Ctor_WrongData_EmptyNameEmp_Fail() =>
-            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new City(1, ""));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _ = new City( ""));
 
         [Test]
         public void AddTourToEmployee_ValidData_Success()
         {
             //arrange
-            var tour = new Domain.Tour(1, "Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
+            var tour = new Domain.Tour("Планета Тур", DateTime.Now, 500, DateTime.Now, 23);
 
             //act
             var result = this.emp.AddTour(tour);

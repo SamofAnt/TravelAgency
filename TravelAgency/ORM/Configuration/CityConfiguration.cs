@@ -9,17 +9,15 @@ namespace ORM.Configuration
         public void Configure(EntityTypeBuilder<City> builder)
         {
             builder.HasKey(c => c.Id);
-            builder.Property(c => c.Id)
-                .HasColumnName("ID_CITY");
             builder.Property(c => c.NameCity)
                 .IsRequired();
 
-
             builder
-                .HasOne(c=>c.Country)
+                .HasOne(c => c.Country)
                 .WithMany(c => c.Cities)
-                .HasForeignKey(c=>c.CountryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey("CountryId")
+                .OnDelete(DeleteBehavior.SetNull);
+
         }
     }
 }

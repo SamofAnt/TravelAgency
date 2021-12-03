@@ -9,8 +9,6 @@ namespace ORM.Configuration
         public void Configure(EntityTypeBuilder<Attraction> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.Property(a => a.Id)
-                .HasColumnName("ID_ATTRACTION");
 
             builder.Property(a => a.NameAttraction)
                 .IsRequired();
@@ -18,9 +16,9 @@ namespace ORM.Configuration
 
             builder
                 .HasOne(a => a.City)
-                .WithMany(c=>c.Attractions)
-                .HasForeignKey(a=>a.CityId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(c => c.Attractions)
+                .HasForeignKey("CityId")
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

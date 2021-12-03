@@ -19,12 +19,10 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Transport"/>.
         /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameTransport">Название транспорта</param>
-        public Transport(int id, string nameTransport)
+        public Transport( string nameTransport)
         {
             this.NameTransport = nameTransport.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTransport));
-            this.Id = id;
         }
 
         /// <summary>

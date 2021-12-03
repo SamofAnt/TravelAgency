@@ -8,27 +8,24 @@ namespace Domain
     using System;
     using System.Collections.Generic;
     using Staff;
-    using Staff.Extensions;
 
     /// <summary>
-    /// Класс тур
+    /// Класс тур.
     /// </summary>
     public class Tour
     {
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
         /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameTour">Название тура</param>
         /// <param name="dateStart">Дата начала</param>
         /// <param name="price">Цена</param>
         /// <param name="dateEnd">Дата окончания</param>
         /// <param name="maxTourists">Максимальное количество туристов</param>
         /// <param name="tourists">Список туристов</param>
-        public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists,
+        public Tour( string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists,
             ISet<Tourist> tourists = null, ISet<Hotel> hotels = null, Employee employee = null, ISet<Transport> transports = null)
         {
-            this.Id = id;
             this.DateStart = dateStart;
             this.Price = price;
             this.DateEnd = dateEnd;
@@ -71,15 +68,13 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nameTour"></param>
-        /// <param name="dateStart"></param>
-        /// <param name="price"></param>
-        /// <param name="dateEnd"></param>
-        /// <param name="maxTourists"></param>
-        public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists)
+        /// <param name="nameTour">Название тура</param>
+        /// <param name="dateStart">Дата начала</param>
+        /// <param name="price">Цена</param>
+        /// <param name="dateEnd">Дата окончания</param>
+        /// <param name="maxTourists">Максимальное количество туристов</param>
+        public Tour( string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists)
         {
-            this.Id = id;
             this.DateStart = dateStart;
             this.Price = price;
             this.DateEnd = dateEnd;

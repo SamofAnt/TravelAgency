@@ -16,11 +16,9 @@ namespace Domain
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Country"/>.
         /// </summary>
-        /// <param name="id">Уникальный идентификатор</param>
         /// <param name="nameCountry">Название страны</param>
-        public Country(int id, string nameCountry)
+        public Country(string nameCountry)
         {
-            this.Id = id;
             this.NameCountry = nameCountry.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameCountry));
             this.Cities = new HashSet<City>();
             this.Hotels = new HashSet<Hotel>();
