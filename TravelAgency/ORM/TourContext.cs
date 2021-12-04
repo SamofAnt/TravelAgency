@@ -27,13 +27,13 @@ namespace ORM
         }
 
         public TourContext(DbContextOptions<TourContext> options) : base(options) { }
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
-        }
-        */
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -43,10 +43,12 @@ namespace ORM
                 new Country(2, "USA"),
                 new Country(3, "Italy")
             };
+            var city = new City() { Id = 1, NameCity = "Moscow", Country = countries[0] };
+            city.Country.Id = 1;
             modelBuilder.Entity<Country>().HasData(countries);
-            modelBuilder.Entity<City>().HasData(new City() { Id= 1, NameCity = "Moscow", CountryId = 1});
-            modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel", CountryId = 1 });
-            modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", CityId = 1});
+            modelBuilder.Entity<City>().HasData(city);
+            modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel" , Country = countries[0]}.Country.Id = 1);
+             modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", City = city}.City.Id = 1);
             modelBuilder.Entity<Employee>().HasData(new Employee()
             {
                 Id = 1,
@@ -57,7 +59,7 @@ namespace ORM
                 Birthday = DateTime.Now,
                 Position = "CEO"
             });
-            modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU"});
+            modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU" });
             modelBuilder.Entity<Tourist>().HasData(new Tourist()
             {
                 Id = 1,

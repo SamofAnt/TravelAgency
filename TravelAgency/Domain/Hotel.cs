@@ -51,10 +51,6 @@ namespace Domain
         /// </summary>
         public int ClassHotel { get;  set; }
 
-        /// <summary>
-        /// Получает или задает идентификатор страны
-        /// </summary>
-        public int CountryId { get; set; }
 
         /// <summary>
         /// Получает или задает объект страны

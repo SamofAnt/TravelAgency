@@ -24,6 +24,7 @@ namespace ORM.Configuration
             builder.Property(t => t.Price)
                 .IsRequired();
 
+
             builder
                 .HasOne(t => t.Employee)
                 .WithMany(e => e.Tours)

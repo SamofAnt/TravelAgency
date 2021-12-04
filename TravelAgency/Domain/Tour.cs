@@ -14,6 +14,14 @@ namespace Domain
     /// </summary>
     public class Tour
     {
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
+        /// </summary>
+        public Tour()
+        {
+        }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
         /// </summary>
@@ -24,7 +32,7 @@ namespace Domain
         /// <param name="dateEnd">Дата окончания</param>
         /// <param name="maxTourists">Максимальное количество туристов</param>
         /// <param name="tourists">Список туристов</param>
-        public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists,
+        public Tour(int id, string nameTour, DateTime dateStart, decimal price, DateTime dateEnd, int maxTourists,
             ISet<Tourist> tourists = null, ISet<Hotel> hotels = null, Employee employee = null, ISet<Transport> transports = null)
         {
             this.Id = id;
@@ -57,7 +65,7 @@ namespace Domain
                 this.Employee = employee;
             }
 
-            if(transports != null)
+            if (transports != null)
             {
                 foreach (var transport in transports)
                 {
@@ -75,20 +83,13 @@ namespace Domain
         /// <param name="price">Цена</param>
         /// <param name="dateEnd">Дата окончания</param>
         /// <param name="maxTourists">Максимальное количество туристов</param>
-        public Tour( string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists)
+        public Tour(string nameTour, DateTime dateStart, decimal price, DateTime dateEnd, int maxTourists)
         {
             this.DateStart = dateStart;
             this.Price = price;
             this.DateEnd = dateEnd;
             this.MaxTourists = maxTourists;
             this.NameTour = nameTour.TrimOrNull() ?? throw new ArgumentOutOfRangeException(nameof(nameTour));
-        }
-
-        /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
-        /// </summary>
-        public Tour()
-        {
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает цену тура
         /// </summary>
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// Получает или задает дату начала тура.
@@ -122,14 +123,10 @@ namespace Domain
         public int MaxTourists { get; set; }
 
         /// <summary>
-        /// Получает или задает идентфикатор сотрудника
-        /// </summary>
-        public int EmployeeId { get; set; }
-
-        /// <summary>
         /// Получает или задает сотрудника тура
         /// </summary>
         public virtual Employee Employee { get; set; }
+
         /// <summary>
         /// Получает или задает список туристов.
         /// </summary>
