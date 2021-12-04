@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class TourRepository : IRepository<Tour>
+    public class TourRepository : IRepository<Tour>
     {
         private readonly TourContext _context;
         public TourRepository(TourContext context)

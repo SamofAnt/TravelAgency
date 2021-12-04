@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IRepository<Employee>
     {
         private TourContext _context;
         public EmployeeRepository(TourContext context)

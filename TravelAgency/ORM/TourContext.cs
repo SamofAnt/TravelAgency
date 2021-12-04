@@ -21,6 +21,7 @@ namespace ORM
     /// </summary>
     public class TourContext : DbContext
     {
+        public TourContext(DbContextOptions<TourContext> options) : base(options) { }
         public TourContext()
         {
             Database.EnsureCreated();

@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class CountryRepository:IRepository<Country>
+    public class CountryRepository:IRepository<Country>
     {
         private TourContext _context;
         public CountryRepository(TourContext context)
