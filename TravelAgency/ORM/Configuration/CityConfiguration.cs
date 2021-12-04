@@ -16,7 +16,7 @@ namespace ORM.Configuration
                 .HasOne(c => c.Country)
                 .WithMany(c => c.Cities)
                 .HasForeignKey("CountryId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

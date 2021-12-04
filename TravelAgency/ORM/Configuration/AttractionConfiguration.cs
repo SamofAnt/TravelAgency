@@ -18,7 +18,7 @@ namespace ORM.Configuration
                 .HasOne(a => a.City)
                 .WithMany(c => c.Attractions)
                 .HasForeignKey("CityId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -29,7 +29,6 @@ namespace ORM.Configuration
                 .WithMany(e => e.Tours)
                 .HasForeignKey("EmployeeId")
                 .OnDelete(DeleteBehavior.Cascade);
-
         }
     }
 }

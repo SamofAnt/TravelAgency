@@ -15,6 +15,12 @@ namespace Domain
     /// </summary>
     public class Transport
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Transport"/>.
+        /// </summary>
+        public Transport()
+        {
+        }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Transport"/>.

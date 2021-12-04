@@ -85,9 +85,16 @@ namespace Domain
         }
 
         /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
+        /// </summary>
+        public Tour()
+        {
+        }
+
+        /// <summary>
         /// Получает или задает уникальный идентификатор.
         /// </summary>
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
 
         /// <summary>
         /// Получает или задает  название тура.
@@ -126,12 +133,12 @@ namespace Domain
         /// <summary>
         /// Получает или задает список туристов.
         /// </summary>
-        public virtual ISet<Tourist> Tourists { get; protected set; } = new HashSet<Tourist>();
+        public virtual ISet<Tourist> Tourists { get;  set; } = new HashSet<Tourist>();
 
         /// <summary>
         /// Получает или задает список отелей.
         /// </summary>
-        public virtual ISet<Hotel> Hotels { get; protected set; } = new HashSet<Hotel>();
+        public virtual ISet<Hotel> Hotels { get;  set; } = new HashSet<Hotel>();
 
         /// <summary>
         /// Получает или задает список транспорта

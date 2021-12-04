@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class TourRepository : IRepository<Tour>
+    public class TourRepository : IRepository<Tour>
     {
         private readonly TourContext _context;
         public TourRepository(TourContext context)
@@ -21,7 +21,11 @@ namespace ORM.Repositories
             this._context.SaveChanges();
             return tour;
         }
-
+        public void Update(Tour tour)
+        {
+            _context.Set<Tour>().Update(tour);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var tour))
@@ -49,16 +53,6 @@ namespace ORM.Repositories
         public bool TryGet(int id, out Tour tour)
         {
             return (tour = this.GetById(id)) != null;
-        }
-
-        public Tour Update(Tour entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<Tour>.Update(Tour entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

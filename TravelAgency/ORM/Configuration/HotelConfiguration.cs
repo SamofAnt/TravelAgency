@@ -22,7 +22,7 @@ namespace ORM.Configuration
                 .HasOne(h => h.Country)
                 .WithMany(c => c.Hotels)
                 .HasForeignKey("CountryId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

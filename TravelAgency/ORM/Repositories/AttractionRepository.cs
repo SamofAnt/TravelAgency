@@ -20,7 +20,11 @@ namespace ORM.Repositories
             this._context.SaveChanges();
             return attraction;
         }
-
+        public void Update(Attraction attraction)
+        {
+            _context.Set<Attraction>().Update(attraction);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var attraction))
@@ -48,10 +52,6 @@ namespace ORM.Repositories
             attraction = this.GetAll().SingleOrDefault(t => t.Id == id);
             return attraction != null;
         }
-        public void Update(Attraction entity)
-        {
-            _context.Set<Attraction>().Update(entity);
-            _context.SaveChanges();
-        }
+        
     }
 }

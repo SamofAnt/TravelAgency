@@ -18,7 +18,11 @@
             this._context.SaveChanges();
             return hotel;
         }
-
+        public void Update(Hotel hotel)
+        {
+            _context.Set<Hotel>().Update(hotel);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var hotel))
@@ -45,13 +49,6 @@
         {
             hotel = this.GetAll().SingleOrDefault(t => t.Id == id);
             return hotel != null;
-        }
-
-
-       public void Update(Hotel hotel)
-        {
-            _context.Set<Hotel>().Update(hotel);
-            _context.SaveChanges();
         }
     }
 }

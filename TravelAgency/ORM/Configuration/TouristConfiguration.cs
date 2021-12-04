@@ -22,7 +22,6 @@ namespace ORM.Configuration
 
             builder.HasMany(t => t.Tours)
                 .WithMany(t => t.Tourists);
-
         }
     }
 }

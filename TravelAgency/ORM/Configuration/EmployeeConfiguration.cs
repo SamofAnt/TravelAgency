@@ -21,7 +21,6 @@ namespace ORM.Configuration
                 .IsRequired();
             builder.Property(e => e.Birthday)
                 .IsRequired();
-
         }
     }
 }
