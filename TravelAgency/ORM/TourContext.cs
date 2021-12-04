@@ -43,32 +43,32 @@ namespace ORM
                 new Country(2, "USA"),
                 new Country(3, "Italy")
             };
-            var city = new City() { Id = 1, NameCity = "Moscow", Country = countries[0] };
-            city.Country.Id = 1;
+            //var city = new City() { Id = 1, NameCity = "Moscow", Country = countries[0] };
+            //city.Country.Id = 1;
             modelBuilder.Entity<Country>().HasData(countries);
-            modelBuilder.Entity<City>().HasData(city);
-            modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel" , Country = countries[0]}.Country.Id = 1);
-             modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", City = city}.City.Id = 1);
-            modelBuilder.Entity<Employee>().HasData(new Employee()
-            {
-                Id = 1,
-                LastName = "Samofalov",
-                FirstName = "Anton",
-                Phone = "+7(915)-356-08-98",
-                Email = "samofalov@gmail.com",
-                Birthday = DateTime.Now,
-                Position = "CEO"
-            });
-            modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU" });
-            modelBuilder.Entity<Tourist>().HasData(new Tourist()
-            {
-                Id = 1,
-                LastName = "Pyaternev",
-                FirstName = "Alex",
-                Phone = "+7(915)-356-08-98",
-                Email = "alex@gmail.com",
-                Birthday = DateTime.Now
-            });
+            //modelBuilder.Entity<City>().HasData(city);
+            //modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel" , Country = countries[0]}.Country.Id = 1);
+            // modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", City = city}.City.Id = 1);
+            //modelBuilder.Entity<Employee>().HasData(new Employee()
+            //{
+            //    Id = 1,
+            //    LastName = "Samofalov",
+            //    FirstName = "Anton",
+            //    Phone = "+7(915)-356-08-98",
+            //    Email = "samofalov@gmail.com",
+            //    Birthday = DateTime.Now,
+            //    Position = "CEO"
+            //});
+            //modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU" });
+            //modelBuilder.Entity<Tourist>().HasData(new Tourist()
+            //{
+            //    Id = 1,
+            //    LastName = "Pyaternev",
+            //    FirstName = "Alex",
+            //    Phone = "+7(915)-356-08-98",
+            //    Email = "alex@gmail.com",
+            //    Birthday = DateTime.Now
+            //});
         }
 
         public virtual DbSet<Attraction> Attraction { get; set; }
