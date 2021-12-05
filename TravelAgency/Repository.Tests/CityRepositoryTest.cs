@@ -23,7 +23,7 @@
 
             City savedCity = sut.Create(city);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Paris", savedCity.NameCity);
             Assert.Equal(0, savedCity.Attractions.Count);
             Assert.Null(savedCity.Country);
@@ -41,7 +41,7 @@
 
             City savedCity = sut.Create(city);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("London", savedCity.NameCity);
             Assert.Equal("England", savedCity.Country.NameCountry);
             Assert.Equal(1, savedCity.Country.Cities.Count);
@@ -63,29 +63,17 @@
 
             City savedCity = sut.Create(city);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("London", savedCity.NameCity);
             Assert.Equal(1, savedCity.Attractions.Count);
             Assert.Equal("Kremlin", savedCity.Attractions.ToList()[0].NameAttraction);
-        }
-
-        private IRepository<City> GetInMemoryCityRepository()
-        {
-            DbContextOptions<TourContext> options;
-            var builder = new DbContextOptionsBuilder<TourContext>();
-            builder.UseInMemoryDatabase(databaseName: "CityDb");
-            options = builder.Options;
-            TourContext tourContext = new TourContext(options);
-            tourContext.Database.EnsureDeleted();
-            tourContext.Database.EnsureCreated();
-            return new CityRepository(tourContext);
         }
 
         [Fact]
         public void Delete_WhenNoCitiesAndHotels()
         {
             IRepository<City> sut = GetInMemoryCityRepository();
-
+            sut.Create(GenerateCity(1, "Tested", GenerateCountry(4, "Lol")));
             City deleteCity = sut.GetById(1);
             sut.Delete(1);
 
@@ -98,6 +86,7 @@
         public void Update_WhenNoCitiesAndHotels()
         {
             IRepository<City> sut = GetInMemoryCityRepository();
+            sut.Create(GenerateCity(1, "Tested", GenerateCountry(4, "Lol")));
 
             City updateCity = sut.GetById(1);
             updateCity.NameCity = "London";
@@ -105,5 +94,24 @@
 
             Assert.Equal("London", sut.GetById(1).NameCity);
         }
+        private IRepository<City> GetInMemoryCityRepository()
+        {
+            DbContextOptions<TourContext> options;
+            var builder = new DbContextOptionsBuilder<TourContext>();
+            builder.UseInMemoryDatabase(databaseName: "CityDb");
+            options = builder.Options;
+            TourContext tourContext = new TourContext(options);
+            tourContext.Database.EnsureDeleted();
+            tourContext.Database.EnsureCreated();
+            return new CityRepository(tourContext);
+        }
+        private City GenerateCity(int id, string nameCity, Country country) => new()
+        {
+            Id = id,
+            NameCity = nameCity,
+            Country = country
+        };
+
+        private Country GenerateCountry(int id, string nameCounty) => new(id, nameCounty);
     }
 }

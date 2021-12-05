@@ -31,7 +31,7 @@
 
             Tourist savedTourist = sut.Create(tourist);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Samofalov A.", savedTourist.FullName);
             Assert.NotNull(savedTourist.Tours);
         }
@@ -60,7 +60,7 @@
 
             Tourist savedTourist = sut.Create(transport);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Samofalov A.", savedTourist.FullName);
             Assert.Equal("Gelengik", savedTourist.Tours.First().NameTour);
         }
@@ -69,6 +69,7 @@
         public void Delete_ValidData_Success()
         {
             IRepository<Tourist> sut = GetInMemoryTouristRepository();
+            sut.Create(GenerateTourist(1, "Samofalov", "Anton", "7986547521", "anton@anton.ru", DateTime.Now));
 
             Tourist deleteTourist = sut.GetById(1);
             sut.Delete(1);
@@ -82,6 +83,7 @@
         public void Update_ValidData_Success()
         {
             IRepository<Tourist> sut = GetInMemoryTouristRepository();
+            sut.Create(GenerateTourist(1, "Samofalov", "Anton", "7986547521", "anton@anton.ru", DateTime.Now));
 
             Tourist updateTourist = sut.GetById(1);
             updateTourist.FirstName = "Alexander";
@@ -100,6 +102,19 @@
             tourContext.Database.EnsureDeleted();
             tourContext.Database.EnsureCreated();
             return new TouristRepository(tourContext);
+        }
+
+        private Tourist GenerateTourist(int id, string lastName, string firstName, string phone, string email, DateTime birthday)
+        {
+            return new Tourist()
+            {
+                Id = id,
+                LastName = lastName,
+                FirstName = firstName,
+                Phone = phone,
+                Email = email,
+                Birthday = birthday
+            };
         }
     }
 }

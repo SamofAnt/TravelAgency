@@ -22,7 +22,7 @@
 
             Attraction savedAttraction = sut.Create(attraction);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Kremlin", savedAttraction.NameAttraction);
             Assert.Null(savedAttraction.City);
         }
@@ -40,7 +40,7 @@
 
             Attraction savedAttraction = sut.Create(attraction);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Kremlin", savedAttraction.NameAttraction);
             Assert.Equal("Moscow", savedAttraction.City.NameCity);
         }
@@ -49,6 +49,7 @@
         public void Delete_ValidData_Success()
         {
             IRepository<Attraction> sut = GetInMemoryAttractionRepository();
+            sut.Create(GenerateAttraction(1, "Tester", GenerateCity(1, "tests", GenerateCountry(4, "China"))));
 
             Attraction deleteAttraction = sut.GetById(1);
             sut.Delete(1);
@@ -62,6 +63,7 @@
         public void Update_ValidData_Success()
         {
             IRepository<Attraction> sut = GetInMemoryAttractionRepository();
+            sut.Create(GenerateAttraction(1, "Tester", GenerateCity(1, "tests", GenerateCountry(4, "China"))));
 
             Attraction updateAttraction = sut.GetById(1);
             updateAttraction.NameAttraction = "The Eiffel Tower";
@@ -81,5 +83,19 @@
             tourContext.Database.EnsureCreated();
             return new AttractionRepository(tourContext);
         }
+        
+        private Attraction GenerateAttraction(int id, string nameAttraction, City city) => new()
+        {
+            Id = 1,
+            NameAttraction = nameAttraction,
+            City = city
+        };
+        private City GenerateCity(int id, string nameCity, Country country) => new()
+        {
+            Id = id,
+            NameCity = nameCity,
+            Country = country
+        };
+        private Country GenerateCountry(int id, string nameCounty) => new(id, nameCounty);
     }
 }

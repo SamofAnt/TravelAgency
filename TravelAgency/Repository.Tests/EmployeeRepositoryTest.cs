@@ -32,7 +32,7 @@
 
             Employee savedEmployee = sut.Create(employee);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Samofalov A.", savedEmployee.FullName);
             Assert.NotNull(savedEmployee.Tours);
         }
@@ -62,7 +62,7 @@
 
             Employee savedEmployee = sut.Create(employee);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Samofalov A.", savedEmployee.FullName);
             Assert.Equal("Gelengik", savedEmployee.Tours.First().NameTour);
         }
@@ -71,6 +71,7 @@
         public void Delete_ValidData_Success()
         {
             IRepository<Employee> sut = GetInMemoryEmployeeRepository();
+            sut.Create(GenerateEmployee(1, "Samofalov", "Test", "test", "test@test.su", DateTime.Now.AddDays(1), "testing"));
 
             Employee deleteEmployee = sut.GetById(1);
             sut.Delete(1);
@@ -84,6 +85,7 @@
         public void Update_ValidData_Success()
         {
             IRepository<Employee> sut = GetInMemoryEmployeeRepository();
+            sut.Create(GenerateEmployee(1, "Samofalov", "Test", "test", "test@test.su", DateTime.Now.AddDays(1), "testing"));
 
             Employee updateEmployee = sut.GetById(1);
             updateEmployee.FirstName = "Pasha";
@@ -103,5 +105,17 @@
             tourContext.Database.EnsureCreated();
             return new EmployeeRepository(tourContext);
         }
+        //modelBuilder.Entity<Employee>().HasData(new Employee()
+        //{
+        //    Id = 1,
+        //    LastName = "Samofalov",
+        //    FirstName = "Anton",
+        //    Phone = "+7(915)-356-08-98",
+        //    Email = "samofalov@gmail.com",
+        //    Birthday = DateTime.Now,
+        //    Position = "CEO"
+        //});
+        private Employee GenerateEmployee(int id, string lastName, string firstName, string phone, string email, DateTime birthday, string position)
+            => new(id, lastName, firstName, phone, email, birthday, position);
     }
 }

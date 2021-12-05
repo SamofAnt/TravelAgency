@@ -27,7 +27,7 @@
 
             Transport savedTransport = sut.Create(transport);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Bus MIIT", savedTransport.NameTransport);
             Assert.NotNull(savedTransport.Tours);
         }
@@ -52,7 +52,7 @@
 
             Transport savedTransport = sut.Create(transport);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Bus MIIT", savedTransport.NameTransport);
             Assert.Equal("Gelengik", savedTransport.Tours.First().NameTour);
         }
@@ -61,6 +61,7 @@
         public void Delete_ValidData_Success()
         {
             IRepository<Transport> sut = GetInMemoryTransportRepository();
+            sut.Create(GenereateTransport(1, "MIIT"));
 
             Transport deleteTransport = sut.GetById(1);
             sut.Delete(1);
@@ -74,6 +75,7 @@
         public void Update_ValidData_Success()
         {
             IRepository<Transport> sut = GetInMemoryTransportRepository();
+            sut.Create(GenereateTransport(1, "MIIT"));
 
             Transport updateTransport = sut.GetById(1);
             updateTransport.NameTransport = "Train MIIT";
@@ -92,6 +94,17 @@
             tourContext.Database.EnsureDeleted();
             tourContext.Database.EnsureCreated();
             return new TransportRepository(tourContext);
+        }
+
+        //modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU" });
+
+        private Transport GenereateTransport(int id, string nameTransport)
+        {
+            return new Transport
+            {
+                Id = id,
+                NameTransport = nameTransport
+            };
         }
     }
 }

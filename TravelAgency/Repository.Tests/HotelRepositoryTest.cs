@@ -22,7 +22,7 @@
 
             Hotel savedHotel = sut.Create(hotel);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Radisson", savedHotel.NameHotel);
             Assert.Null(savedHotel.Country);
         }
@@ -40,7 +40,7 @@
 
             Hotel savedHotel = sut.Create(hotel);
 
-            Assert.Equal(2, sut.GetAll().Count());
+            Assert.Equal(1, sut.GetAll().Count());
             Assert.Equal("Radisson", savedHotel.NameHotel);
             Assert.Equal("England", savedHotel.Country.NameCountry);
             Assert.Equal(1, savedHotel.Country.Hotels.Count);
@@ -50,7 +50,8 @@
         public void Delete_ValidData_Success()
         {
             IRepository<Hotel> sut = GetInMemoryCityRepository();
-
+            sut.Create(GenerateHotel(1, "Radisson", 5, GenerateCountry(4, "China")));
+            
             Hotel deleteCity = sut.GetById(1);
             sut.Delete(1);
 
@@ -63,6 +64,7 @@
         public void Update_ValidData_Success()
         {
             IRepository<Hotel> sut = GetInMemoryCityRepository();
+            sut.Create(GenerateHotel(1, "Radisson", 5, GenerateCountry(4, "China")));
 
             Hotel updateCity = sut.GetById(1);
             updateCity.NameHotel = "London";
@@ -82,5 +84,17 @@
             tourContext.Database.EnsureCreated();
             return new HotelRepository(tourContext);
         }
+
+        private Hotel GenerateHotel(int id, string nameHotel, int classHotel, Country country)
+        {
+            return new Hotel
+            {
+                Id = id,
+                NameHotel = nameHotel,
+                ClassHotel = classHotel,
+                Country = country
+            };
+        }
+        private Country GenerateCountry(int id, string nameCounty) => new(id, nameCounty);
     }
 }
