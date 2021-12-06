@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class TransportRepository : IRepository<Transport>
+    public class TransportRepository : IRepository<Transport>
     {
         private TourContext _context;
         public TransportRepository(TourContext context)
@@ -20,7 +20,11 @@ namespace ORM.Repositories
             this._context.SaveChanges();
             return transport;
         }
-
+        public void Update(Transport entity)
+        {
+            _context.Set<Transport>().Update(entity);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var transport))
@@ -47,16 +51,6 @@ namespace ORM.Repositories
         {
             transport = this.GetAll().SingleOrDefault(t => t.Id == id);
             return transport != null;
-        }
-
-        public Transport Update(Transport entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<Transport>.Update(Transport entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

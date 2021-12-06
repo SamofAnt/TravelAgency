@@ -1,9 +1,13 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="CityConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class CityConfiguration:IEntityTypeConfiguration<City>
     {
         public void Configure(EntityTypeBuilder<City> builder)
@@ -16,7 +20,7 @@ namespace ORM.Configuration
                 .HasOne(c => c.Country)
                 .WithMany(c => c.Cities)
                 .HasForeignKey("CountryId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

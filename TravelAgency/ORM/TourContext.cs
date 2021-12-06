@@ -2,22 +2,14 @@
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
-using System.Reflection;
-using ORM.Configuration;
-
 namespace ORM
 {
-    using System;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.SqlServer;
-
-    using System.ComponentModel.DataAnnotations.Schema;
-  
-    using System.Data.Entity.Infrastructure;
     using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using System.Reflection;
 
     /// <summary>
-    /// 
+    /// Класс контекста 
     /// </summary>
     public class TourContext : DbContext
     {
@@ -27,13 +19,17 @@ namespace ORM
         }
 
         public TourContext(DbContextOptions<TourContext> options) : base(options) { }
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
-        }
-        */
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
+        //}
+
+        /// <summary>
+        /// Конфигурирование сущностей базы данных
+        /// </summary>
+        /// <param name="modelBuilder">Объект для создания модели.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
@@ -44,11 +40,6 @@ namespace ORM
                 new Country(3, "Italy")
             };
             modelBuilder.Entity<Country>().HasData(countries);
-            modelBuilder.Entity<City>().HasData(new City() { Id= 1, NameCity = "Moscow", CountryId = 1});
-            modelBuilder.Entity<Hotel>().HasData(new Hotel() { Id = 1, NameHotel = "Novotel", CountryId = 1 });
-            modelBuilder.Entity<Attraction>().HasData(new Attraction() { Id = 1, NameAttraction = "Museum", CityId = 1});
-
-
         }
 
         public virtual DbSet<Attraction> Attraction { get; set; }

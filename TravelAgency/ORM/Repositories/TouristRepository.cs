@@ -6,7 +6,7 @@ namespace ORM.Repositories
     using System;
     using System.Linq;
     using System.Linq.Expressions;
-    class TouristRepository : IRepository<Tourist>
+    public class TouristRepository : IRepository<Tourist>
     {
         private readonly TourContext _context;
         public TouristRepository(TourContext context)
@@ -18,6 +18,11 @@ namespace ORM.Repositories
             this._context.Tourist.Add(tourist);
             this._context.SaveChanges();
             return tourist;
+        }
+        public void Update(Tourist tourist)
+        {
+            _context.Set<Tourist>().Update(tourist);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
@@ -46,16 +51,6 @@ namespace ORM.Repositories
         {
             tourist = this.GetAll().SingleOrDefault(t => t.Id == id);
             return tourist != null;
-        }
-
-        public Tourist Update(Tourist entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<Tourist>.Update(Tourist entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

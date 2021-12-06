@@ -2,7 +2,6 @@
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
-
 namespace Domain
 {
     using System;
@@ -11,10 +10,17 @@ namespace Domain
     using Staff.Extensions;
 
     /// <summary>
-    /// Класс сотрудник
+    /// Класс сотрудник.
     /// </summary>
     public class Employee
     {
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Employee"/>.
+        /// </summary>
+        public Employee()
+        {
+        }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Employee"/>.
         /// </summary>
@@ -39,17 +45,17 @@ namespace Domain
         /// <summary>
         /// Получает или задает уникальный идентификатор
         /// </summary>
-        public int Id { get; protected set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Получает или задает фамилию.
         /// </summary>
-        public string LastName { get; protected set; }
+        public string LastName { get; set; }
 
         /// <summary>
         /// Получает или задает имя
         /// </summary>
-        public string FirstName { get; protected set; }
+        public string FirstName { get; set; }
 
         /// <summary>
         /// Получает полное имя.
@@ -79,7 +85,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает туры.
         /// </summary>
-        public virtual ISet<Tour> Tours { get; protected set; } = new HashSet<Tour>();
+        public virtual ISet<Tour> Tours { get; set; } = new HashSet<Tour>();
 
         /// <summary>
         /// Добавить тур туристу.

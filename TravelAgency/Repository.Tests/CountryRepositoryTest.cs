@@ -1,3 +1,7 @@
+// <copyright file="CountryRepositoryTest.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
+
 namespace Repository.Tests
 {
     using Domain;
@@ -10,10 +14,13 @@ namespace Repository.Tests
     using ORM.Repositories;
 
     /// <summary>
-    /// 
+    /// Класс для тестов репозитория страны.
     /// </summary>
     public class CountryRepositoryTest
     {
+        /// <summary>
+        /// Тест на добавление страны без городов и отелей.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveNoCitiesAndHotels()
         {
@@ -27,6 +34,10 @@ namespace Repository.Tests
             Assert.Equal(0, savedPerson.Cities.Count);
             Assert.Equal(0, savedPerson.Hotels.Count);
         }
+
+        /// <summary>
+        /// Тест на добавление страны с городом.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleCity()
         {
@@ -48,6 +59,10 @@ namespace Repository.Tests
             Assert.Equal(1, savedCountry.Cities.Count);
             Assert.Equal("Paris", savedCountry.Cities.ToList()[0].NameCity);
         }
+
+        /// <summary>
+        /// Тест на добавление страны с отелем.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleHotel()
         {
@@ -73,6 +88,10 @@ namespace Repository.Tests
             Assert.Equal(1, savedCountry.Hotels.Count);
             Assert.Equal("Radisson", savedCountry.Hotels.ToList()[0].NameHotel);
         }
+
+        /// <summary>
+        /// Тест на добавление страны с городом и отелем.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleHotelAndCity()
         {
@@ -109,6 +128,10 @@ namespace Repository.Tests
             Assert.Equal(1, savedCountry.Cities.Count);
             Assert.Equal("Paris", savedCountry.Cities.ToList()[0].NameCity);
         }
+
+        /// <summary>
+        /// Тест на успешное удаление страны.
+        /// </summary>
         [Fact]
         public void Delete_WhenNoCitiesAndHotels()
         {
@@ -121,6 +144,10 @@ namespace Repository.Tests
             Assert.Equal(2, sut.GetAll().Count());
             Assert.Null( sut.GetAll().FirstOrDefault(c=>c.NameCountry== deleteCountry.NameCountry));
         }
+
+        /// <summary>
+        /// Тест на успешное обновление страны.
+        /// </summary>
         [Fact]
         public void Update_WhenNoCitiesAndHotels()
         {
@@ -133,6 +160,10 @@ namespace Repository.Tests
             Assert.Equal("England", sut.GetById(1).NameCountry);
         }
 
+        /// <summary>
+        /// Получение объекта репозитория страны.
+        /// </summary>
+        /// <returns>объект репозитория страны.</returns>
         private IRepository<Country> GetInMemoryCountryRepository()
         {
             DbContextOptions<TourContext> options;

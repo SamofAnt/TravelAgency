@@ -1,9 +1,13 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="HotelConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class HotelConfiguration:IEntityTypeConfiguration<Hotel>
     {
         public void Configure(EntityTypeBuilder<Hotel> builder)
@@ -22,7 +26,7 @@ namespace ORM.Configuration
                 .HasOne(h => h.Country)
                 .WithMany(c => c.Hotels)
                 .HasForeignKey("CountryId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

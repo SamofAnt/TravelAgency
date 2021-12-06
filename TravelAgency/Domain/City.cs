@@ -38,11 +38,6 @@ namespace Domain
         public string NameCity { get; set; }
 
         /// <summary>
-        /// Получает или задает идентификатор страны
-        /// </summary>
-        public int CountryId { get; set; }
-
-        /// <summary>
         /// Получает или задает объект страны.
         /// </summary>
         public virtual Country Country { get; set; }

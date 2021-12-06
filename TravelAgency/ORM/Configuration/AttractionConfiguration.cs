@@ -1,9 +1,13 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="AttractionConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class AttractionConfiguration:IEntityTypeConfiguration<Attraction>   
     {
         public void Configure(EntityTypeBuilder<Attraction> builder)
@@ -18,7 +22,7 @@ namespace ORM.Configuration
                 .HasOne(a => a.City)
                 .WithMany(c => c.Attractions)
                 .HasForeignKey("CityId")
-                .OnDelete(DeleteBehavior.SetNull);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

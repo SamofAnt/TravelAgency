@@ -7,7 +7,7 @@ namespace ORM.Repositories
     using System.Linq;
     using System.Linq.Expressions;
 
-    class EmployeeRepository : IRepository<Employee>
+    public class EmployeeRepository : IRepository<Employee>
     {
         private TourContext _context;
         public EmployeeRepository(TourContext context)
@@ -20,7 +20,11 @@ namespace ORM.Repositories
             this._context.SaveChanges();
             return employee;
         }
-
+        public void Update(Employee employee)
+        {
+            _context.Set<Employee>().Update(employee);
+            _context.SaveChanges();
+        }
         public void Delete(int id)
         {
             if (!this.TryGet(id, out var employee))
@@ -47,16 +51,6 @@ namespace ORM.Repositories
         {
             employee = this.GetAll().SingleOrDefault(t => t.Id == id);
             return employee != null;
-        }
-
-        public Employee Update(Employee entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepository<Employee>.Update(Employee entity)
-        {
-            throw new NotImplementedException();
         }
     }
 }

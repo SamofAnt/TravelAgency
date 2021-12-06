@@ -1,17 +1,21 @@
-using System;
-using Xunit;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using Domain;
-using ORM.Repositories;
-using TestSupport.EfHelpers;
+// <copyright file="BaseMapTests.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Tests
 {
+    using Xunit;
+    using System.Linq;
+    using TestSupport.EfHelpers;
+    
+    /// <summary>
+    /// Класс для тестов маппингов.
+    /// </summary>
     public class BaseMapTests
     {
-   
+        /// <summary>
+        /// Тест на успешное создание базы данных.
+        /// </summary>
         [Fact]
         public void TestSqliteInMemoryOk()
         {
@@ -22,6 +26,9 @@ namespace ORM.Tests
             context.Database.EnsureCreated();
         }
 
+        /// <summary>
+        /// Тест на успешное удаление и создание базы данных.
+        /// </summary>
         [Fact]
         public void TestEnsureDeletedEnsureCreatedOk()
         {
@@ -33,6 +40,9 @@ namespace ORM.Tests
             context.Database.EnsureCreated();
         }
 
+        /// <summary>
+        /// Тест на успешное обращение к базе данных.
+        /// </summary>
         [Fact]
         public void ExampleIdentityResolutionBad()
         {

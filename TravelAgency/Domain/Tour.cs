@@ -14,6 +14,14 @@ namespace Domain
     /// </summary>
     public class Tour
     {
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
+        /// </summary>
+        public Tour()
+        {
+        }
+
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Tour"/>.
         /// </summary>
@@ -24,7 +32,7 @@ namespace Domain
         /// <param name="dateEnd">Дата окончания</param>
         /// <param name="maxTourists">Максимальное количество туристов</param>
         /// <param name="tourists">Список туристов</param>
-        public Tour(int id, string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists,
+        public Tour(int id, string nameTour, DateTime dateStart, decimal price, DateTime dateEnd, int maxTourists,
             ISet<Tourist> tourists = null, ISet<Hotel> hotels = null, Employee employee = null, ISet<Transport> transports = null)
         {
             this.Id = id;
@@ -57,7 +65,7 @@ namespace Domain
                 this.Employee = employee;
             }
 
-            if(transports != null)
+            if (transports != null)
             {
                 foreach (var transport in transports)
                 {
@@ -75,7 +83,7 @@ namespace Domain
         /// <param name="price">Цена</param>
         /// <param name="dateEnd">Дата окончания</param>
         /// <param name="maxTourists">Максимальное количество туристов</param>
-        public Tour( string nameTour, DateTime dateStart, int price, DateTime dateEnd, int maxTourists)
+        public Tour(string nameTour, DateTime dateStart, decimal price, DateTime dateEnd, int maxTourists)
         {
             this.DateStart = dateStart;
             this.Price = price;
@@ -87,7 +95,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает уникальный идентификатор.
         /// </summary>
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
 
         /// <summary>
         /// Получает или задает  название тура.
@@ -97,7 +105,7 @@ namespace Domain
         /// <summary>
         /// Получает или задает цену тура
         /// </summary>
-        public int Price { get; set; }
+        public decimal Price { get; set; }
 
         /// <summary>
         /// Получает или задает дату начала тура.
@@ -115,23 +123,19 @@ namespace Domain
         public int MaxTourists { get; set; }
 
         /// <summary>
-        /// Получает или задает идентфикатор сотрудника
-        /// </summary>
-        public int EmployeeId { get; set; }
-
-        /// <summary>
         /// Получает или задает сотрудника тура
         /// </summary>
         public virtual Employee Employee { get; set; }
+
         /// <summary>
         /// Получает или задает список туристов.
         /// </summary>
-        public virtual ISet<Tourist> Tourists { get; protected set; } = new HashSet<Tourist>();
+        public virtual ISet<Tourist> Tourists { get;  set; } = new HashSet<Tourist>();
 
         /// <summary>
         /// Получает или задает список отелей.
         /// </summary>
-        public virtual ISet<Hotel> Hotels { get; protected set; } = new HashSet<Hotel>();
+        public virtual ISet<Hotel> Hotels { get;  set; } = new HashSet<Hotel>();
 
         /// <summary>
         /// Получает или задает список транспорта

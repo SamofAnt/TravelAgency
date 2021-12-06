@@ -41,11 +41,6 @@ namespace Domain
         public string NameAttraction { get; set; }
 
         /// <summary>
-        /// Получает или задает идентификатор города
-        /// </summary>
-        public int CityId { get; set; }
-
-        /// <summary>
         /// Получает или задает объект города
         /// </summary>
         public virtual City City { get; set; }
