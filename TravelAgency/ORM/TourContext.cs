@@ -2,22 +2,14 @@
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
-using System.Reflection;
-using ORM.Configuration;
-
 namespace ORM
 {
-    using System;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.SqlServer;
-
-    using System.ComponentModel.DataAnnotations.Schema;
-  
-    using System.Data.Entity.Infrastructure;
     using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using System.Reflection;
 
     /// <summary>
-    /// 
+    /// Класс контекста 
     /// </summary>
     public class TourContext : DbContext
     {
@@ -34,6 +26,10 @@ namespace ORM
         //        "Data Source=DESKTOP-K8R5DB7;Initial Catalog=TourAgency;Integrated Security=true");
         //}
 
+        /// <summary>
+        /// Конфигурирование сущностей базы данных
+        /// </summary>
+        /// <param name="modelBuilder">Объект для создания модели.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

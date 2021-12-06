@@ -1,4 +1,8 @@
-﻿namespace Repository.Tests
+﻿// <copyright file="TourRepositoryTest.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
+
+namespace Repository.Tests
 {
     using Domain;
     using ORM.Repositories.Interfaces;
@@ -11,13 +15,15 @@
     using System;
 
     /// <summary>
-    /// 
+    /// Класс для тестов репозитория тура.
     /// </summary>
     public class TourRepositoryTest
     {
-
+        /// <summary>
+        /// Тест на добавление тура с сотрудником.
+        /// </summary>
         [Fact]
-        public void Add_WhenHaveNoCitiesAndHotels_WithEmployee()
+        public void Add_SingleTour_WithEmployee()
         {
             IRepository<Tour> sut = GetInMemoryTourRepository();
 
@@ -33,6 +39,10 @@
             Assert.Equal(0, savedTour.Tourists.Count);
             Assert.Equal(0, savedTour.Transports.Count);
         }
+
+        /// <summary>
+        /// Тест на добавление тура с отелем.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleHotel()
         {
@@ -55,6 +65,10 @@
             Assert.Equal(1, savedTour.Hotels.Count);
             Assert.Equal("Radisson", savedTour.Hotels.ToList()[0].NameHotel);
         }
+
+        /// <summary>
+        /// Тест на добавление тура с туристом.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleTourist()
         {
@@ -80,6 +94,10 @@
             Assert.Equal(1, savedTour.Tourists.Count);
             Assert.Equal("Ivanov I.", savedTour.Tourists.ToList()[0].FullName);
         }
+
+        /// <summary>
+        /// Тест на добавление тура с транспортом.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveSingleTransport()
         {
@@ -100,6 +118,10 @@
             Assert.Equal(1, savedTour.Transports.Count);
             Assert.Equal("Bus", savedTour.Transports.ToList()[0].NameTransport);
         }
+
+        /// <summary>
+        /// Тест на успешное удаление тура с сотрудником.
+        /// </summary>
         [Fact]
         public void Delete_Single_ValidData_Success()
         {
@@ -115,6 +137,10 @@
             Assert.Equal(0, sut.GetAll().Count());
             Assert.Null(sut.GetAll().FirstOrDefault(t => t.NameTour == deleteTour.NameTour));
         }
+
+        /// <summary>
+        /// Тест на успешное удаление тура с отелем.
+        /// </summary>
         [Fact]
         public void Delete_WhenHaveHotel_ValidData_Success()
         {
@@ -140,8 +166,11 @@
             Assert.Equal(1, tour.Hotels.Count);
         }
 
+        /// <summary>
+        /// Тест на успешное обновление тура.
+        /// </summary>
         [Fact]
-        public void Update_WhenNoCitiesAndHotels()
+        public void Update_Single_ValidData_Success()
         {
             IRepository<Tour> sut = GetInMemoryTourRepository();
             var employee = GenerateEmployee(2, "Ivan", "Ivanov", "79151234567", "noreply@gmail.com", DateTime.Now, "CEO");
@@ -156,6 +185,10 @@
             Assert.Equal("TestTour", sut.GetById(1).NameTour);
         }
 
+        /// <summary>
+        /// Получение объекта репозитория тура.
+        /// </summary>
+        /// <returns>объект репозитория тура.</returns>
         private IRepository<Tour> GetInMemoryTourRepository()
         {
             DbContextOptions<TourContext> options;
@@ -167,6 +200,18 @@
             tourContext.Database.EnsureCreated();
             return new TourRepository(tourContext);
         }
+
+        /// <summary>
+        /// Создание сущности
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="nameTour">Название тура.</param>
+        /// <param name="dateStart">Дата начала.</param>
+        /// <param name="dateEnd">Дата окончания.</param>
+        /// <param name="price">Цена.</param>
+        /// <param name="maxTourists">Максимальное количество туристов.</param>
+        /// <param name="employee">Ссылка на объект сотрудника.</param>
+        /// <returns>Тур.</returns>
         private Tour GenerateTour(int id, string nameTour, DateTime dateStart, DateTime dateEnd, decimal price, int maxTourists, Employee employee)
         {
             return new Tour()
@@ -181,6 +226,17 @@
             };
         }
 
+        /// <summary>
+        /// Создание сущности сотрудника.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="phone">Телефон.</param>
+        /// <param name="email">Почта.</param>
+        /// <param name="birthday">Дата рождения.</param>
+        /// <param name="position">Должность.</param>
+        /// <returns>Сотрудник.</returns>
         private Employee GenerateEmployee(int id, string firstName, string lastName, string phone, string email, DateTime birthday, string position) =>
             new(id, lastName, firstName, phone, email, birthday, position);
     }

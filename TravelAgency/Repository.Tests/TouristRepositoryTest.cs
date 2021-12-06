@@ -1,4 +1,8 @@
-﻿namespace Repository.Tests
+﻿// <copyright file="TouristRepositoryTest.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
+
+namespace Repository.Tests
 {
     using Domain;
     using ORM;
@@ -11,10 +15,13 @@
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// 
+    /// Класс для тестов репозитория туриста.
     /// </summary>
     public class TouristRepositoryTest
     {
+        /// <summary>
+        /// Тест на добавление туриста без тура.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveNoTour()
         {
@@ -35,6 +42,10 @@
             Assert.Equal("Samofalov A.", savedTourist.FullName);
             Assert.NotNull(savedTourist.Tours);
         }
+
+        /// <summary>
+        /// Тест на добавление туриста с туром.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveTour()
         {
@@ -65,6 +76,9 @@
             Assert.Equal("Gelengik", savedTourist.Tours.First().NameTour);
         }
 
+        /// <summary>
+        /// Тест на успешное удаление туриста.
+        /// </summary>
         [Fact]
         public void Delete_ValidData_Success()
         {
@@ -79,6 +93,9 @@
             Assert.Null(sut.GetAll().FirstOrDefault(c => c.FirstName == deleteTourist.FirstName));
         }
 
+        /// <summary>
+        /// Тест на успешное обновление туриста.
+        /// </summary>
         [Fact]
         public void Update_ValidData_Success()
         {
@@ -92,6 +109,10 @@
             Assert.Equal("Alexander", sut.GetById(1).FirstName);
         }
 
+        /// <summary>
+        /// Получение объекта репозитория туриста.
+        /// </summary>
+        /// <returns>объект репозитория туриста.</returns>
         private IRepository<Tourist> GetInMemoryTouristRepository()
         {
             DbContextOptions<TourContext> options;
@@ -104,6 +125,16 @@
             return new TouristRepository(tourContext);
         }
 
+        /// <summary>
+        /// Создание сущности туриста.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="phone">Телефон.</param>
+        /// <param name="email">Почта.</param>
+        /// <param name="birthday">Дата рождения.</param>
+        /// <returns>Турист.</returns>
         private Tourist GenerateTourist(int id, string lastName, string firstName, string phone, string email, DateTime birthday)
         {
             return new Tourist()

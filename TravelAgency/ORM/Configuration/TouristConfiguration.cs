@@ -1,9 +1,13 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="TouristConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class TouristConfiguration:IEntityTypeConfiguration<Tourist>
     {
         public void Configure(EntityTypeBuilder<Tourist> builder)

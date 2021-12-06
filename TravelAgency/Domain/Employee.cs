@@ -2,7 +2,6 @@
 // Copyright (c) Самофалов А.П.. All rights reserved.
 // </copyright>
 
-
 namespace Domain
 {
     using System;
@@ -11,7 +10,7 @@ namespace Domain
     using Staff.Extensions;
 
     /// <summary>
-    /// Класс сотрудник
+    /// Класс сотрудник.
     /// </summary>
     public class Employee
     {

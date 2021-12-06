@@ -1,7 +1,7 @@
-﻿using System;
-
+﻿
 namespace Domain.Tests
 {
+    using System;
     using NUnit.Framework;
 
     [TestFixture]

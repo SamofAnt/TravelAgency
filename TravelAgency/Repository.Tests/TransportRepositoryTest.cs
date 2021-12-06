@@ -1,4 +1,8 @@
-﻿namespace Repository.Tests
+﻿// <copyright file="TransportRepositoryTest.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
+
+namespace Repository.Tests
 {
     using Domain;
     using ORM;
@@ -6,15 +10,17 @@
     using ORM.Repositories.Interfaces;
     using Xunit;
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Тест
+    /// Класс для тестов репозитория транспорта.
     /// </summary>
     public class TransportRepositoryTest
     {
+        /// <summary>
+        /// Тест на добавление транспорта без тура.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveNoTour()
         {
@@ -31,6 +37,10 @@
             Assert.Equal("Bus MIIT", savedTransport.NameTransport);
             Assert.NotNull(savedTransport.Tours);
         }
+
+        /// <summary>
+        /// Тест на добавление транспорта с тура.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveTour()
         {
@@ -57,6 +67,9 @@
             Assert.Equal("Gelengik", savedTransport.Tours.First().NameTour);
         }
 
+        /// <summary>
+        /// Тест на успешное удаление транспорта.
+        /// </summary>
         [Fact]
         public void Delete_ValidData_Success()
         {
@@ -71,6 +84,9 @@
             Assert.Null(sut.GetAll().FirstOrDefault(c => c.NameTransport == deleteTransport.NameTransport));
         }
 
+        /// <summary>
+        /// Тест на успешное обновление транспорта.
+        /// </summary>
         [Fact]
         public void Update_ValidData_Success()
         {
@@ -84,6 +100,10 @@
             Assert.Equal("Train MIIT", sut.GetById(1).NameTransport);
         }
 
+        /// <summary>
+        /// Получение объекта репозитория транспорта.
+        /// </summary>
+        /// <returns>объект репозитория транспорта.</returns>
         private IRepository<Transport> GetInMemoryTransportRepository()
         {
             DbContextOptions<TourContext> options;
@@ -96,8 +116,12 @@
             return new TransportRepository(tourContext);
         }
 
-        //modelBuilder.Entity<Transport>().HasData(new Transport() { Id = 1, NameTransport = "Bus BSU" });
-
+        /// <summary>
+        /// Создание сушности транспорт.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="nameTransport">Название транспорта.</param>
+        /// <returns>Транспорт.</returns>
         private Transport GenereateTransport(int id, string nameTransport)
         {
             return new Transport

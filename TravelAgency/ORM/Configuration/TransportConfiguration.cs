@@ -1,9 +1,13 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="TransportConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     public class TransportConfiguration:IEntityTypeConfiguration<Transport>
     {
         public void Configure(EntityTypeBuilder<Transport> builder)

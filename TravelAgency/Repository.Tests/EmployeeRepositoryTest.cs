@@ -1,4 +1,8 @@
-﻿namespace Repository.Tests
+﻿// <copyright file="EmployeeRepositoryTest.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
+
+namespace Repository.Tests
 {
     using Domain;
     using ORM;
@@ -9,12 +13,15 @@
     using System.Collections.Generic;
     using System.Linq;
     using Microsoft.EntityFrameworkCore;
-    
+
     /// <summary>
-    /// Тесты на IQ
+    /// Класс для тестов репозитория сотрудника.
     /// </summary>
     public class EmployeeRepositoryTest
     {
+        /// <summary>
+        /// Тест на добавление сотрудника без тура.
+        /// </summary>
         [Fact]
         public void Add_WhenHaveNoTour()
         {
@@ -36,8 +43,12 @@
             Assert.Equal("Samofalov A.", savedEmployee.FullName);
             Assert.NotNull(savedEmployee.Tours);
         }
+
+        /// <summary>
+        /// Тест на добавление сотрудника с туром.
+        /// </summary>
         [Fact]
-        public void Add_WhenHaveCountry()
+        public void Add_WhenHaveTour()
         {
             IRepository<Employee> sut = GetInMemoryEmployeeRepository();
             Employee employee = new Employee()
@@ -67,6 +78,9 @@
             Assert.Equal("Gelengik", savedEmployee.Tours.First().NameTour);
         }
         
+        /// <summary>
+        /// Тест на успешное удаление сотрудника.
+        /// </summary>
         [Fact]
         public void Delete_ValidData_Success()
         {
@@ -81,6 +95,9 @@
             Assert.Null(sut.GetAll().FirstOrDefault(c => c.FirstName == deleteEmployee.FirstName));
         }
 
+        /// <summary>
+        /// Тест на успешное обновление сотрудника.
+        /// </summary>
         [Fact]
         public void Update_ValidData_Success()
         {
@@ -93,7 +110,11 @@
 
             Assert.Equal("Samofalov P.", sut.GetById(1).FullName);
         }
-        
+
+        /// <summary>
+        /// Получение объекта репозитория сотрудника.
+        /// </summary>
+        /// <returns>объект репозитория сотрудника.</returns>
         private IRepository<Employee> GetInMemoryEmployeeRepository()
         {
             DbContextOptions<TourContext> options;
@@ -105,16 +126,18 @@
             tourContext.Database.EnsureCreated();
             return new EmployeeRepository(tourContext);
         }
-        //modelBuilder.Entity<Employee>().HasData(new Employee()
-        //{
-        //    Id = 1,
-        //    LastName = "Samofalov",
-        //    FirstName = "Anton",
-        //    Phone = "+7(915)-356-08-98",
-        //    Email = "samofalov@gmail.com",
-        //    Birthday = DateTime.Now,
-        //    Position = "CEO"
-        //});
+
+        /// <summary>
+        /// Создание сущности сотрудника.
+        /// </summary>
+        /// <param name="id">Уникальный идентификатор.</param>
+        /// <param name="lastName">Фамилия.</param>
+        /// <param name="firstName">Имя.</param>
+        /// <param name="phone">Телефон.</param>
+        /// <param name="email">Почта.</param>
+        /// <param name="birthday">Дата рождения.</param>
+        /// <param name="position">Должность.</param>
+        /// <returns>Сотрудник.</returns>
         private Employee GenerateEmployee(int id, string lastName, string firstName, string phone, string email, DateTime birthday, string position)
             => new(id, lastName, firstName, phone, email, birthday, position);
     }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿// <copyright file="TourConfiguration.cs" company="Самофалов А.П.">
+// Copyright (c) Самофалов А.П.. All rights reserved.
+// </copyright>
 
 namespace ORM.Configuration
 {
-    class TourConfiguration: IEntityTypeConfiguration<Tour>
+    using Domain;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+    class TourConfiguration : IEntityTypeConfiguration<Tour>
     {
         public void Configure(EntityTypeBuilder<Tour> builder)
         {
